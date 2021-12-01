@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"aoc2021/utils"
 )
 
 const window_len = 3
@@ -17,7 +18,7 @@ func CheckIncrease(prev int, curr int) int {
 	return 0
 }
 
-func main() {
+func task2() {
 	file, _ := os.Open(os.Args[1])
 	
 	prev_window := make([]int, 0)
@@ -58,4 +59,8 @@ func main() {
 	counter += CheckIncrease(prev_sum, curr_sum)
 
 	fmt.Println(counter)
+}
+
+func main() {
+	utils.Stopwatch(task2)
 }

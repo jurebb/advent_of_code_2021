@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"aoc2021/utils"
 )
 
-func main() {
+func task1() {
 	file, _ := os.Open(os.Args[1])
 
 	scanner := bufio.NewScanner(file)
@@ -28,4 +29,8 @@ func main() {
     }
 
 	fmt.Println(counter)
+}
+
+func main() {
+	utils.Stopwatch(task1)
 }
