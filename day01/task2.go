@@ -8,10 +8,10 @@ import (
     "aoc2021/utils"
 )
 
-const window_len = 3
+const windowLen = 3
 
 func CheckIncrease(prev int, curr int) int {
-    if (curr - prev) > 0 {
+    if curr > prev {
         return 1
     }
     
@@ -20,11 +20,12 @@ func CheckIncrease(prev int, curr int) int {
 
 func task2() {
     file, _ := os.Open(os.Args[1])
+    defer file.Close()
     
-    prev_window := make([]int, 0)
-    prev_sum := int(0)
-    curr_sum := int(0)
-    window_counter := 0
+    prevWindow := make([]int, 0)
+    prevSum := int(0)
+    currSum := int(0)
+    windowCounter := 0
     counter := 0
     var curr int 
 
@@ -32,13 +33,13 @@ func task2() {
 
     for scanner.Scan() {
         curr, _ = strconv.Atoi(scanner.Text())
-        prev_window = append(prev_window, curr)
-        prev_sum += curr
+        prevWindow = append(prevWindow, curr)
+        prevSum += curr
 
-        window_counter += 1
+        windowCounter += 1
 
-        if window_counter >= window_len {
-            curr_sum = prev_sum
+        if windowCounter >= windowLen {
+            currSum = prevSum
             break
         }
     }
@@ -46,18 +47,18 @@ func task2() {
     for scanner.Scan() {
         curr, _ = strconv.Atoi(scanner.Text())
 
-        curr_sum -= prev_window[0]
-        prev_window = prev_window[1:]
+        currSum -= prevWindow[0]
+        prevWindow = prevWindow[1:]
         
-        curr_sum += curr
-        prev_window = append(prev_window, curr)
+        currSum += curr
+        prevWindow = append(prevWindow, curr)
 
-        counter += CheckIncrease(prev_sum, curr_sum)
+        counter += CheckIncrease(prevSum, currSum)
 
-        prev_sum = curr_sum
+        prevSum = currSum
     }
 
-    counter += CheckIncrease(prev_sum, curr_sum)
+    counter += CheckIncrease(prevSum, currSum)
 
     fmt.Println(counter)
 }

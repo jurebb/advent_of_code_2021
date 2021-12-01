@@ -8,16 +8,9 @@ import (
     "aoc2021/utils"
 )
 
-func CheckIncrease(prev int, curr int) int {
-    if (curr - prev) > 0 {
-        return 1
-    }
-    
-    return 0
-}
-
 func task1() {
     file, _ := os.Open(os.Args[1])
+    defer file.Close()
 
     scanner := bufio.NewScanner(file)
 
@@ -30,7 +23,9 @@ func task1() {
     for scanner.Scan() {
         curr, _ = strconv.Atoi(scanner.Text())
 
-        counter += CheckIncrease(prev, curr)
+        if curr > prev {
+            counter ++
+        }
 
         prev = curr
     }
