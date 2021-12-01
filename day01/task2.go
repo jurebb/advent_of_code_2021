@@ -9,7 +9,7 @@ import (
 
 const window_len = 3
 
-func sum(array []int64) int64 {  
+func Sum(array []int64) int64 {  
 	result := int64(0)
 
 	for _, v := range array {  
@@ -19,7 +19,7 @@ func sum(array []int64) int64 {
 	return result  
 }  
 
-func check_increase(prev int64, curr int64) int {
+func CheckIncrease(prev int64, curr int64) int {
 	if (curr - prev) > 0 {
 		return 1
 	}
@@ -45,7 +45,7 @@ func main() {
 		window_counter += 1
 
 		if window_counter >= window_len {
-			prev_sum = sum(prev_window)
+			prev_sum = Sum(prev_window)
 			curr_sum = prev_sum
 			break
 		}
@@ -60,12 +60,12 @@ func main() {
 		curr_sum += curr
 		prev_window = append(prev_window, curr)
 
-		counter += check_increase(prev_sum, curr_sum)
+		counter += CheckIncrease(prev_sum, curr_sum)
 
 		prev_sum = curr_sum
     }
 
-	counter += check_increase(prev_sum, curr_sum)
+	counter += CheckIncrease(prev_sum, curr_sum)
 
 	fmt.Println(counter)
 }
