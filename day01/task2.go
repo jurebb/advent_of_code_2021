@@ -9,8 +9,8 @@ import (
 
 const window_len = 3
 
-func Sum(array []int64) int64 {  
-	result := int64(0)
+func Sum(array []int) int {  
+	result := int(0)
 
 	for _, v := range array {  
 		result += v  
@@ -19,7 +19,7 @@ func Sum(array []int64) int64 {
 	return result  
 }  
 
-func CheckIncrease(prev int64, curr int64) int {
+func CheckIncrease(prev int, curr int) int {
 	if (curr - prev) > 0 {
 		return 1
 	}
@@ -30,16 +30,16 @@ func CheckIncrease(prev int64, curr int64) int {
 func main() {
 	file, _ := os.Open(os.Args[1])
 	
-	prev_window := make([]int64, 0)
-	prev_sum := int64(0)
-	curr_sum := int64(0)
+	prev_window := make([]int, 0)
+	prev_sum := int(0)
+	curr_sum := int(0)
 	window_counter := 0
 	counter := 0
 
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		curr, _ := strconv.ParseInt(scanner.Text(), 0, 64)
+		curr, _ := strconv.Atoi(scanner.Text())
 		prev_window = append(prev_window, curr)
 
 		window_counter += 1
@@ -52,7 +52,7 @@ func main() {
 	}
     
     for scanner.Scan() {
-		curr, _ := strconv.ParseInt(scanner.Text(), 0, 64)
+		curr, _ := strconv.Atoi(scanner.Text())
 
 		curr_sum -= prev_window[0]
 		prev_window = prev_window[1:]
