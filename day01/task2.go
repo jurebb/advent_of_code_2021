@@ -9,16 +9,6 @@ import (
 
 const window_len = 3
 
-func Sum(array []int) int {  
-	result := int(0)
-
-	for _, v := range array {  
-		result += v  
-	} 
-
-	return result  
-}  
-
 func CheckIncrease(prev int, curr int) int {
 	if (curr - prev) > 0 {
 		return 1
@@ -41,11 +31,11 @@ func main() {
 	for scanner.Scan() {
 		curr, _ := strconv.Atoi(scanner.Text())
 		prev_window = append(prev_window, curr)
+		prev_sum += curr
 
 		window_counter += 1
 
 		if window_counter >= window_len {
-			prev_sum = Sum(prev_window)
 			curr_sum = prev_sum
 			break
 		}
