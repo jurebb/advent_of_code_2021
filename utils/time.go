@@ -1,15 +1,15 @@
 package utils
 
 import (
-	"fmt"
-	"time"
+    "fmt"
+    "time"
 )
 
 func Stopwatch(function func()) {
-	start := time.Now()
+    start := time.Now()
 
-	function()
+    function()
 
-	elapsed := time.Since(start)
+    elapsed := time.Since(start)
     fmt.Println("took ", elapsed)
 }
