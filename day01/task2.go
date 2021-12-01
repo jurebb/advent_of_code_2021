@@ -26,11 +26,12 @@ func task2() {
 	curr_sum := int(0)
 	window_counter := 0
 	counter := 0
+	var curr int 
 
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		curr, _ := strconv.Atoi(scanner.Text())
+		curr, _ = strconv.Atoi(scanner.Text())
 		prev_window = append(prev_window, curr)
 		prev_sum += curr
 
@@ -43,7 +44,7 @@ func task2() {
 	}
     
     for scanner.Scan() {
-		curr, _ := strconv.Atoi(scanner.Text())
+		curr, _ = strconv.Atoi(scanner.Text())
 
 		curr_sum -= prev_window[0]
 		prev_window = prev_window[1:]
