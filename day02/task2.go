@@ -5,20 +5,20 @@ import (
     "fmt"
     "os"
     "strconv"
-	"strings"
+    "strings"
     "aoc2021/utils"
 )
 
 type position struct {
-	x int
-	y int
+    x int
+    y int
     aim int
 }
 
 type fn func(*position, int)
 
 func forward(p *position, step int) {
-	p.x += step
+    p.x += step
     p.y += p.aim * step
 }
 
@@ -37,14 +37,14 @@ func task2() {
     scanner := bufio.NewScanner(file)
 
     moves := map[string] fn {
-		"forward": forward,
-		"down": down,
-		"up": up,
-	} 
-	pos := position{0, 0, 0}
+        "forward": forward,
+        "down": down,
+        "up": up,
+    } 
+    pos := position{0, 0, 0}
     
     for scanner.Scan() {
-		line := strings.Fields(scanner.Text())
+        line := strings.Fields(scanner.Text())
         step, _ := strconv.Atoi(line[1])
 
         moves[line[0]](&pos, step)
