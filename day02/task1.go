@@ -1,0 +1,56 @@
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+    "strconv"
+	"strings"
+    "aoc2021/utils"
+)
+
+type position struct {
+	x int
+	y int
+}
+
+type fn func(*position, int)
+
+func forward(p *position, step int) {
+	p.x += step
+}
+
+func down(p *position, step int) {
+	p.y += step
+}
+
+func up(p *position, step int) {
+	p.y -= step
+}
+
+func task1() {
+    file, _ := os.Open(os.Args[1])
+    defer file.Close()
+
+    scanner := bufio.NewScanner(file)
+
+    moves := map[string] fn {
+		"forward": forward,
+		"down": down,
+		"up": up,
+	} 
+	pos := position{0, 0}
+    
+    for scanner.Scan() {
+		line := strings.Fields(scanner.Text())
+        step, _ := strconv.Atoi(line[1])
+
+        moves[line[0]](&pos, step)
+    }
+
+    fmt.Println(pos.x * pos.y)
+}
+
+func main() {
+    utils.Stopwatch(task1)
+}
