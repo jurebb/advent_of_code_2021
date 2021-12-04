@@ -16,9 +16,6 @@ func leastCommon(candidates []int, threshold int, totalLen int) ([]int, string) 
     var sliceOne []int 
     countOne := 0
 
-    // fmt.Println("co2 cands", candidates)
-    // fmt.Println("co2 thresh", threshold)
-
     for _, val := range candidates {
         if val < threshold {
             sliceZero = append(sliceZero, val)
@@ -36,11 +33,9 @@ func leastCommon(candidates []int, threshold int, totalLen int) ([]int, string) 
     }
 
     if countOne >= totalLen - countOne {
-        // fmt.Println("co2 0")
         return sliceZero, "0"
     }
 
-    // fmt.Println("co2 1")
     return sliceOne, "1"
 }
 
@@ -48,9 +43,6 @@ func mostCommon(candidates []int, threshold int, totalLen int) ([]int, string) {
     var sliceZero []int 
     var sliceOne []int 
     countZero := 0
-
-    // fmt.Println("o2 cands", candidates)
-    // fmt.Println("o2 thresh", threshold)
 
     for _, val := range candidates {
         if val >= threshold {
@@ -69,11 +61,9 @@ func mostCommon(candidates []int, threshold int, totalLen int) ([]int, string) {
     }
 
     if countZero > totalLen - countZero {
-        // fmt.Println("o2 0")
         return sliceZero, "0"
     }
 
-    // fmt.Println("o2 1")
     return sliceOne, "1"
 }
 
@@ -117,16 +107,10 @@ func task2() {
     }
 
     binaryO2Rating := calculateO2Rating(candidates, lineLen - 1, "")
-    fmt.Println("o2Rating", binaryO2Rating)
-
     binaryCO2Rating := calculateCO2Rating(candidates, lineLen - 1, "")
-    fmt.Println("co2Rating", binaryCO2Rating)
 
     o2Rating, _ := strconv.ParseInt(binaryO2Rating, 2, 64)
-    fmt.Println("o2Rating", o2Rating)
-
     co2Rating, _ := strconv.ParseInt(binaryCO2Rating, 2, 64)
-    fmt.Println("co2Rating", co2Rating)
 
     fmt.Println(o2Rating * co2Rating)
 }
