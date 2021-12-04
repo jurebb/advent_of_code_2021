@@ -86,8 +86,8 @@ func solve(actions []string, index map[string] []number, boardValues [boards][]i
 }
 
 func checkSolved(drawn [boards][gridRowsCols][]int) int {
-    for boardIndex, _ := range drawn {
-        for rowColIndex, _ := range drawn[boardIndex] {
+    for boardIndex := range drawn {
+        for rowColIndex := range drawn[boardIndex] {
             if len(drawn[boardIndex][rowColIndex]) == gridRowsCols {
                 fmt.Println(drawn[boardIndex][rowColIndex])
                 return boardIndex
