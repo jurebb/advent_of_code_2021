@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const DAYS = 80
+const DAYS = 256 	// set to 80 for task 1
 
 type FishBundle struct {
 	count int
