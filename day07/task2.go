@@ -25,7 +25,6 @@ func computeNeededFuel(optimalPos float64, candidateRange int, crabPositions []i
 
 		totalFuelCandidate := 0.0
 		for _, crabPos := range crabPositions {
-			// totalFuelCandidate += math.Abs(float64(crabPos) - float64(i))
 			diff := math.Abs(float64(crabPos) - float64(i))
 			totalFuelCandidate += diff * (diff + 1) / 2
 		}
